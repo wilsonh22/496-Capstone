@@ -1,0 +1,110 @@
+tables:
+    - name: id_name
+        constraints:
+            - primary_key: record_id
+        columns:
+            - record_id: record_id
+              type: hash
+              primary_key: true
+            - name: name
+              type: string
+            - source_project_id: source_project_id
+              type: string
+    - name: record_id_filler
+        constraints:
+            - primary_key: id_filler
+            - foreign_keys:
+                - column: record_id
+                    references:
+                        table: id_name
+                        column: record_id
+        columns:
+            - id_filler: id_filler
+              type: hash
+              primary_key: true
+            - record_id: record_id
+              type: hash
+            - filler_column: filler_column
+              type: string
+    - name: verified_record
+        constraints:
+            - primary_key: id_filler
+            - foreign_keys:
+                - column: id_filler
+                    references:
+                        table: record_id_filler
+                        column: id_filler
+        columns:
+            - id_filler: id_filler
+              type: hash
+              primary_key: true
+            - funding_amount: funding_amount
+              type: integer
+            - country_raw: country_raw
+              type: string
+            - start_date: start_date
+              type: date
+            - recipient_name: recipient_name
+              type: string
+            - sector: sector
+              type: string
+            - source_data_set: source_data_set
+              type: string
+            - funder_name: funder_name
+              type: string
+            - funder_type: funder_type
+              type: string
+            - instrument: instrument
+              type: string
+            - other_columns: other_columns
+              type: string
+            - goal_raw: goal_raw
+              type: string
+            - phase_raw: phase_raw
+              type: string
+            - end_date: end_date
+              type: date
+            - id: id
+              type: string
+            - description: description
+              type: string
+            - country_standardized: country_standardized
+              type: string
+    - name: unverified_record
+        columns:
+            - source_project_id: source_project_id
+              type: string
+            - name: name
+              type: string
+            - funding_amount: funding_amount
+              type: integer
+            - country_raw: country_raw
+              type: string
+            - start_date: start_date
+              type: date
+            - recipient_name: recipient_name
+              type: string
+            - sector: sector
+              type: string
+            - source_data_set: source_data_set
+              type: string
+            - funder_name: funder_name
+              type: string
+            - funder_type: funder_type
+              type: string
+            - instrument: instrument
+              type: string
+            - other_columns: other_columns
+              type: string
+            - goal_raw: goal_raw
+              type: string
+            - phase_raw: phase_raw
+              type: string
+            - end_date: end_date
+              type: date
+            - id: id
+              type: string
+            - description: description
+              type: string
+            - country_standardized: country_standardized
+              type: string
